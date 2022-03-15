@@ -11,27 +11,36 @@
     <link rel="shortcut icon" href="./assets/favicon.png" />
     <title>Books</title>
   </head>
+  
   <body>
+    <section class="list__contnent__login">
+      <button class="list__button__quit" type="click">X</button>
+      <p class="list__msj__login">Please, log in to create a list with your favorite books</p>
+      <button class="list__button__login" type="click">LOGIN WITH GOOGLE</button>
+    </section>
     <section class="content__loader">
       <article class="loader">
       </article>
     </section>
-    <header>
-      <section class="header__content">
+    <header class="list__header">
+      <section class="list__header__content">
         <article class="header__fx">
         <img src="./assets/nYtLogo.png" class="header__subtitle"></img>
         <p class="header__title">BEST SELLERS</p>
       </article>
       </section>
     </header>
+    <p class="nameUser"></p>
     <main class="list__main">
+      <a href="./favorites.html"><button class="back__favorites">FAVORITES</button></a>
+      <a href="./index.html"><button class="back__index">HOME</button></a>
       <section class="list__section">
-
-        <a href="./index.html"><button class="back__index">HOME</button></a>
+        
       </section>
-
     </main>
-
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
     <script src="./js/list.js"></script>
   </body>
 </html>

@@ -1,22 +1,5 @@
 /*INDEX*/
-/*FIREBASE*/
-const firebaseConfig = {
-  apiKey: "AIzaSyCo1cuT5PZquatPmr2AA2-qbQxHnboyh68",
-  authDomain: "auth-2298e.firebaseapp.com",
-  projectId: "auth-2298e",
-  storageBucket: "auth-2298e.appspot.com",
-  messagingSenderId: "37066148286",
-  appId: "1:37066148286:web:2c707aec3684259144d1ef"
-};
 
-// firebase.initializeApp(firebaseConfig);
-// const db = firebase.firestore();
-// const createUser = (user) => {
-//   db.collection("newYorkTimes")
-//     .add(user)
-//     .then((docRef) => console.log("User written with ID: ", docRef.id))
-//     .catch((error) => console.error("Error adding document: ", error));
-// };
 /*LOADER*/
 window.onload = function (){
   const content_loader = document.querySelector(".content__loader")
@@ -89,3 +72,4 @@ async function getArticles() {
   }
 }
 getArticles();
+

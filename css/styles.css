@@ -2,8 +2,8 @@ body {
   background-color: #0d27501f;
   display: flex;
   flex-flow: column;
-  justify-content: flex-start;
   align-items: center;
+  padding-bottom: 80px;
 }
 /*LOADER*/
 *,
@@ -15,6 +15,7 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .content__loader {
   top: 0;
   background-color: #ffffff;
@@ -36,7 +37,6 @@ body {
   font-size: 13px;
   height: 100px;
   width: 100px;
-  position: absolute;
   animation-delay: -0.16s;
   border-radius: 100%;
   -webkit-animation: girar 1.5s linear infinite;
@@ -53,13 +53,16 @@ body {
   }
 }
 /*HEADER*/
-
-header {
+.favorite__header,
+.index__header,
+.list__header {
   margin: 10px 0px 5px;
   display: flex;
   justify-content: center;
 }
-.header__content {
+.favorite__header__content,
+.list__header__content,
+.index__header__content {
   border-radius: 10px 10px 10px 10px;
   box-shadow: 7px 7px 10px #0d27501f, -5px -5px 7px #ffffff,
     inset -5px -5px 10px #ffffff9f, inset 5px 5px 15px #0d27501f;
@@ -67,7 +70,10 @@ header {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 280px;
+  width: 270px;
+}
+.list__header__content {
+  filter: blur(5px);
 }
 .header__fx {
   padding: 0px 50px;
@@ -84,24 +90,16 @@ header {
   font-family: "Raleway", sans-serif;
   font-size: 20px;
   text-shadow: 0px 0px 1px #868686;
-  /* text-shadow: 4px 4px 5px #0d27501f, -1px -1px 2px #ffffff; */
+  text-shadow: 4px 4px 5px #0d27501f, -1px -1px 2px #ffffff;
 }
-
+.nameUser {
+  margin-top: 5px;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  color: #ffa600;
+}
 /*INDEX*/
-.index__contnent__login {
-  margin: 5px;
-  position: fixed;
-  width: 98%;
-  height: 98vh;
-  background-color: #86868681;
-}
 
-.index__section {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-}
 .index__article {
   font-family: "Raleway", sans-serif;
   display: flex;
@@ -112,6 +110,12 @@ header {
   border-radius: 10px;
   box-shadow: 7px 7px 10px #0d27501f, -5px -5px 7px #ffffff,
     inset -5px -5px 10px #ffffff9f, inset 5px 5px 15px #0d27501f;
+}
+.index__section {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
 }
 .index__section__title {
   display: flex;
@@ -144,43 +148,139 @@ header {
   font-size: 17px;
   padding: 5px 15px;
   margin: 10px 15px 15px;
-  background-color: transparent;
-  box-shadow: 3px 3px 5px #0d27501f, -2px -2px 4px #ffffff,
-    inset -5px -5px 10px #ffffff9f, inset 5px 5px 15px #0d27501f;
+  background-color: #ffa600;
+  color: white;
+  box-shadow: 3px 3px 5px #0d27501f, -2px -2px 4px #ffffff;
   border-radius: 5px;
   border: transparent;
 }
 .index__section__botton:hover {
-  color: white;
-  background-color: #ffa600;
-  box-shadow: 5px 5px 10px #0d27501f, -3px -3px 7px #ffffff;
+  background-color: #3c464e;
+  box-shadow: 3px 3px 5px #0d27501f, -2px -2px 4px #ffffff;
 }
 .index__section__nameEncode {
   display: none;
 }
 
 /*LIST*/
+.list__contnent__login {
+  border: solid 2px white;
+  top: 60px;
+  height: 350px;
+  border-radius: 15px;
+  z-index: 50;
+  display: flex;
+  flex-flow: column;
+  margin: 5px;
+  position: fixed;
+  width: 300px;
+  background-color: #868686b0;
+  align-items: center;
+  justify-content: space-between;
+}
+.list__button__login {
+  width: 120px;
+  height: 50px;
+  cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  margin: 0px 0px 30px;
+  background-color: #ffa600;
+  box-shadow: 0px 0px 2px #0d2750;
+  border-radius: 5px;
+  border: transparent;
+  color: white;
+}
+.list__button__login:hover {
+  background-color: #3c464e;
+}
+.list__button__quit {
+  margin: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  background-color: #ffa600;
+  box-shadow: 0px 0px 2px #0d2750;
+  border-radius: 5px;
+  border: transparent;
+  color: white;
+  align-self: flex-end;
+}
+.list__button__quit:hover {
+  background-color: #3c464e;
+}
+.list__msj__login {
+  text-align: center;
+  margin: 0px 15px;
+  color: white;
+  font-size: 30px;
+  font-family: "Raleway", sans-serif;
+}
+
 .back__index {
+  display: none;
+  position: fixed;
   color: white;
   cursor: pointer;
   font-family: "Raleway", sans-serif;
   font-size: 17px;
   padding: 5px 15px;
-  margin: 10px 15px 15px;
-  background-color: rgba(255, 0, 0, 0.856);
+  background-color: rgba(255, 0, 0, 0.89);
   border-radius: 5px;
   border: 2px solid white;
-  position: fixed;
   z-index: 10;
   bottom: 0;
-  right: 0;
+  width: 150px;
+  margin: 0px 0px 15px 70px;
 }
-.list__section {
+.back__index__favorites{
+  position: fixed;
+  color: white;
+  cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  font-size: 17px;
+  padding: 5px 15px;
+  background-color: rgba(255, 0, 0, 0.89);
+  border-radius: 5px;
+  border: 2px solid white;
+  z-index: 10;
+  bottom: 0;
+  width: 150px;
+  margin: 0px 0px 15px 70px;
+}
+.back__favorites {
+  display: none;
+  position: fixed;
+  color: white;
+  cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  font-size: 17px;
+  margin: 0px 0px 56px 70px;
+  padding: 5px 15px;
+  background-color: #ffa600e7;
+  border-radius: 5px;
+  border: 2px solid white;
+  z-index: 10;
+  bottom: 0;
+  width: 150px;
+}
+.favorite__section{
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
 }
+.list__section {
+  transition: 0.5s;
+  filter: blur(5px);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.favorite__article,
 .list__article {
   font-family: "Raleway", sans-serif;
   display: flex;
@@ -215,7 +315,7 @@ header {
   text-align: center;
   margin: 2px;
   font-size: 15px;
-  width: 240px;
+  width: 230px;
 }
 .list__books__img {
   box-shadow: 5px 5px 10px #0d275034, -3px -3px 7px #ffffff;
@@ -234,6 +334,7 @@ header {
   min-height: 15px;
   font-size: 15px;
   margin: 2px;
+  color: #ffa600;
 }
 .list__books__description {
   display: flex;
@@ -257,6 +358,7 @@ header {
   width: 80%;
 }
 .list__books__botton {
+  margin: 0px 10px;
   cursor: pointer;
   font-family: "Raleway", sans-serif;
   font-size: 15px;
@@ -271,20 +373,48 @@ header {
   background-color: #3c464e;
   box-shadow: 3px 3px 5px #0d27501f, -2px -2px 4px #ffffff;
 }
-
+.favorite__delete{
+  margin: 0px 0px;
+  width: 25px;
+  height: 20px;
+}
 .list__books__favorite {
+  display: none;
   margin: 0px 5px;
   width: 30px;
   height: 30px;
 }
+.favorite__books__delete,
+.list__books__botton2 {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: transparent;
+  border: transparent;
+}
+
+.favorite__delete:hover{
+  width: 32px;
+  height: 25px;
+}
+
 
 @media screen and (min-width: 768px) {
-  .header__content {
+  .index__header{
+    width: 740px;
+  }
+  .favorite__header,
+  .list__header {
+    width: 768px;
+  }
+  .favorite__header__content,
+  .index__header__content,
+  .list__header__content {
     width: 95%;
   }
   .header__fx {
     width: 650px;
-
     text-align: center;
   }
   .index__section {
@@ -296,14 +426,16 @@ header {
   .index__section__title {
     width: 190px;
   }
+  .favorite__section,
   .list__section {
     flex-flow: row wrap;
     align-items: flex-start;
   }
+  .favorite__article,
   .list__article {
     justify-content: space-between;
     width: 230px;
-    height: 550px;
+    height: 600px;
   }
   .list__books__title {
     margin: 10px 5px 5px;
@@ -312,8 +444,66 @@ header {
   .list__books__description {
     width: 190px;
   }
+  .list__books__botton {
+    padding: 5px;
+    width: 150px;
+  }
+  .back__favorites {
+    right: 0;
+    margin-right: 15px;
+  }
+  .back__index__favorites,
   .back__index {
-    padding: 10px 30px;
-    margin: 10px 15px 15px;
+    right: 0;
+    margin-right: 15px;
+  }
+}
+@media screen and (min-width: 960px) {
+  .index__header {
+    width: 985px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .favorite__header,
+  .list__header {
+    width: 1030px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .index__header {
+    width: 1240px;
+  }
+}
+@media screen and (min-width: 1250px) {
+  .favorite__header,
+  .list__header {
+    width: 1300px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .index__header {
+    width: 1495px;
+  }
+}
+@media screen and (min-width: 1500px) {
+  .favorite__header,
+  .list__header {
+    width: 1555px;
+  }
+}
+@media screen and (min-width: 1680px) {
+  .index__header {
+    width: 1750px;
+  }
+}
+@media screen and (min-width: 1750px) {
+  .favorite__header,
+  .list__header {
+    width: 1815px;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .index__header {
+    width: 2000px;
   }
 }
