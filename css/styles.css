@@ -235,7 +235,7 @@ body {
   width: 150px;
   margin: 0px 0px 15px 70px;
 }
-.back__index__favorites{
+.back__index__favorites {
   position: fixed;
   color: white;
   cursor: pointer;
@@ -266,7 +266,7 @@ body {
   bottom: 0;
   width: 150px;
 }
-.favorite__section{
+.favorite__section {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -373,7 +373,7 @@ body {
   background-color: #3c464e;
   box-shadow: 3px 3px 5px #0d27501f, -2px -2px 4px #ffffff;
 }
-.favorite__delete{
+.favorite__delete {
   margin: 0px 0px;
   width: 25px;
   height: 20px;
@@ -394,14 +394,12 @@ body {
   border: transparent;
 }
 
-.favorite__delete:hover{
-  width: 32px;
-  height: 25px;
+.favorite__delete:hover {
+  filter: opacity(0.8) drop-shadow(0 0 1px red);
 }
 
-
 @media screen and (min-width: 768px) {
-  .index__header{
+  .index__header {
     width: 740px;
   }
   .favorite__header,

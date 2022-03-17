@@ -113,7 +113,7 @@ function traerFavoritos() {
       }
     });
 }
-/*FUNCIÓN PARA FETCH API Y PINTAR LIST*/
+/*FUNCIÓNES PARA FETCH API Y PINTAR LIST*/
 async function getList() {
   try {
     /*fetch de api nytimes*/
@@ -186,7 +186,9 @@ async function getList() {
     console.log(`ERROR Error: ${error.stack}`);
   }
 }
-getList();
+
+
+
 
 /*BOTÓN QUIT DEL LOGIN*/
 document.querySelector(".list__button__quit").addEventListener("click", () => {
@@ -218,3 +220,16 @@ crearUsuario = () => {
       }
     });
 };
+/*DISCRIMINAR SI HAY O NO USUARIO LOGEADO*/
+let activeUser = JSON.parse(localStorage.getItem("userName"));
+console.log(activeUser)
+if (activeUser){
+  document.querySelector(".list__contnent__login").style.display = "none";
+  document.querySelector(".list__header__content").style.filter = "blur(0)";
+  document.querySelector(".list__section").style.filter = "blur(0)";
+  document.querySelector(".back__index").style.display = "block";
+  getList();
+  login()
+} else {
+  getList();
+}

@@ -14,42 +14,41 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-// /*FUNCION PARA GUARDAR EL FAVORITO A BORRAR EN STORAGE*/
-// function favoriteToDelete() {
-//   disLikes = document.querySelectorAll(".favorite__books__delete");
-//   disLikes.forEach((boton) => {
-//     boton.addEventListener("click", function deleteFavorite() {
-//       let titleDelete = this.parentNode.parentNode.firstChild.innerHTML;
-//       console.log(`BORRAMOS - ${titleDelete}`);
-//       localStorage.setItem("titleDelete", JSON.stringify(titleDelete));
-//       let titelDelete = JSON.parse(localStorage.getItem("titleDelete"));
-//       console.log(titelDelete);
-//       db.collection("favoritos")
-//         .get()
-//         .then((querySnapshot) => {
-//           querySnapshot.forEach((doc) => {
-//             const docRef = db.collection("favoritos").doc();
-//             titleDb = doc.data().titulo;
-//             if (titleDb === titelDelete) {
-//               console.log("coincide");
-//               console.log(doc.data().titulo);
-//               doc.data()
-//                 .delete()
-//                 .then(() => {
-//                   console.log("Document successfully deleted!");
-//                 })
-//                 .catch((error) => {
-//                   console.error("Error removing document: ", error);
-//                 });
-//               docRef.update({
-//                 titulo: "",
-//               });
-//             }
-//           });
-//         });
-//     });
-//   });
-// }
+/*FUNCION PARA GUARDAR EL FAVORITO A BORRAR EN STORAGE*/
+function favoriteToDelete() {
+  disLikes = document.querySelectorAll(".favorite__books__delete");
+  disLikes.forEach((boton) => {
+    boton.addEventListener("click", function deleteFavorite() {
+      let titleDelete = this.parentNode.parentNode.firstChild.innerHTML;
+      localStorage.setItem("titleDelete", JSON.stringify(titleDelete));
+      let titelDelete = JSON.parse(localStorage.getItem("titleDelete"));
+      /*COMPARAR SELECCIÓN CON FIREBASE*/
+      db.collection("favoritos")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            const docRef = db.collection("favoritos").doc();
+            titleDb = doc.data().titulo;
+            if (titleDb === titelDelete) {
+              let id = doc.id;
+              console.log(`BORRAMOS - ${titleDb}`);
+              /*BORRAR FAVORITO DE FIREBASE*/
+              db.collection("favoritos")
+                .doc(`${id}`)
+                .delete()
+                .then(() => {
+                  console.log(`Favorito ${titleDb} eliminado`);
+                  location.reload();
+                })
+                .catch((error) => {
+                  console.error("Error removing document: ", error);
+                });
+            }
+          });
+        });
+    });
+  });
+}
 
 /* TRAER FAVORITOS */
 function traerFavoritos() {
@@ -109,7 +108,7 @@ function traerFavoritos() {
           booksSubContent.appendChild(booksLink);
           booksButton2.appendChild(booksFavorites);
           booksLink.appendChild(booksButton);
-          // booksSubContent.appendChild(booksButton2);
+          booksSubContent.appendChild(booksButton2);
           // /*añadiendo los datos del fetch a los elementos html*/
           booksTitle.innerHTML = `${titleDb}`;
           booksAuthor.innerHTML = `${authorDb}`;
@@ -117,12 +116,10 @@ function traerFavoritos() {
           booksWeeks.innerHTML = `${weeksDb}`;
           booksDescription.innerHTML = `${descriptionDb}`;
           booksButton.innerHTML = "BUY IN AMAZON";
-          // booksButton2.style.display = "block";
         }
       });
-      // favoriteToDelete();
+      favoriteToDelete();
     });
 }
 
 traerFavoritos();
-/*MAPEAR BOTON DE FAVORITOS PARA ENVIAR LOS DATOS DE CADA BOTON EN CONCRETO*/
