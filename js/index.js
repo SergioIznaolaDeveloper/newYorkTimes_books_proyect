@@ -1,5 +1,4 @@
 /*INDEX*/
-
 /*LOADER*/
 window.onload = function (){
   const content_loader = document.querySelector(".content__loader")
@@ -58,8 +57,7 @@ async function getArticles() {
     function atClick(event) {
       let selectionName = this.firstChild.innerHTML;
       let selectionLink = this.lastChild;
-      console.log(selectionName);
-      localStorage.setItem("userSelection", JSON.stringify(selectionName));
+      sessionStorage.setItem("userSelection", JSON.stringify(selectionName));
       selectionLink.href = "./list.html";
     }
 

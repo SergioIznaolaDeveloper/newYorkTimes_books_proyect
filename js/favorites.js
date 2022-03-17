@@ -20,8 +20,8 @@ function favoriteToDelete() {
   disLikes.forEach((boton) => {
     boton.addEventListener("click", function deleteFavorite() {
       let titleDelete = this.parentNode.parentNode.firstChild.innerHTML;
-      localStorage.setItem("titleDelete", JSON.stringify(titleDelete));
-      let titelDelete = JSON.parse(localStorage.getItem("titleDelete"));
+      sessionStorage.setItem("titleDelete", JSON.stringify(titleDelete));
+      let titelDelete = JSON.parse(sessionStorage.getItem("titleDelete"));
       /*COMPARAR SELECCIÓN CON FIREBASE*/
       db.collection("favoritos")
         .get()
@@ -31,13 +31,11 @@ function favoriteToDelete() {
             titleDb = doc.data().titulo;
             if (titleDb === titelDelete) {
               let id = doc.id;
-              console.log(`BORRAMOS - ${titleDb}`);
               /*BORRAR FAVORITO DE FIREBASE*/
               db.collection("favoritos")
                 .doc(`${id}`)
                 .delete()
                 .then(() => {
-                  console.log(`Favorito ${titleDb} eliminado`);
                   location.reload();
                 })
                 .catch((error) => {
@@ -52,7 +50,7 @@ function favoriteToDelete() {
 
 /* TRAER FAVORITOS */
 function traerFavoritos() {
-  let userName = JSON.parse(localStorage.getItem("userName"));
+  let userName = JSON.parse(sessionStorage.getItem("userName"));
   db.collection("favoritos")
     .get()
     .then((querySnapshot) => {

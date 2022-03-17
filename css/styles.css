@@ -384,6 +384,9 @@ body {
   width: 30px;
   height: 30px;
 }
+.list__books__favorite:hover{
+  transform: scale(115%);
+}
 .favorite__books__delete,
 .list__books__botton2 {
   cursor: pointer;

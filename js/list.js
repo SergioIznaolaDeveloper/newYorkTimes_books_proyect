@@ -49,7 +49,7 @@ async function login() {
         .forEach((element) => (element.style.display = "block"));
     }
     /*NOMBRE AL STORAGE PARA PAGINA DE FAVORITOS*/
-    localStorage.setItem("userName", JSON.stringify(userLog));
+    sessionStorage.setItem("userName", JSON.stringify(userLog));
     return response;
   } catch (error) {
     throw new Error(error);
@@ -70,23 +70,23 @@ function atClick(event) {
   let amazonUrlSelect =
     this.parentNode.parentNode.childNodes[6].firstChild.href;
 
-  localStorage.setItem("titleSelect", JSON.stringify(titleSelect));
-  localStorage.setItem("authorSelect", JSON.stringify(authorSelect));
-  localStorage.setItem("imgUrlSelect", JSON.stringify(imgUrlSelect));
-  localStorage.setItem("weeklSelect", JSON.stringify(weeksSelect));
-  localStorage.setItem("descriptionSelect", JSON.stringify(descriptionSelect));
-  localStorage.setItem("amazonUrlSelect", JSON.stringify(amazonUrlSelect));
+  sessionStorage.setItem("titleSelect", JSON.stringify(titleSelect));
+  sessionStorage.setItem("authorSelect", JSON.stringify(authorSelect));
+  sessionStorage.setItem("imgUrlSelect", JSON.stringify(imgUrlSelect));
+  sessionStorage.setItem("weeklSelect", JSON.stringify(weeksSelect));
+  sessionStorage.setItem("descriptionSelect", JSON.stringify(descriptionSelect));
+  sessionStorage.setItem("amazonUrlSelect", JSON.stringify(amazonUrlSelect));
   traerFavoritos();
 }
 
 /* GUARDAR FAVORITO EN FIREBASE */
 function traerFavoritos() {
-  let titleSelect = JSON.parse(localStorage.getItem("titleSelect"));
-  let authorSelect = JSON.parse(localStorage.getItem("authorSelect"));
-  let imgUrlSelect = JSON.parse(localStorage.getItem("imgUrlSelect"));
-  let weeksSelect = JSON.parse(localStorage.getItem("weeklSelect"));
-  let descriptionSelect = JSON.parse(localStorage.getItem("descriptionSelect"));
-  let amazonUrlSelect = JSON.parse(localStorage.getItem("amazonUrlSelect"));
+  let titleSelect = JSON.parse(sessionStorage.getItem("titleSelect"));
+  let authorSelect = JSON.parse(sessionStorage.getItem("authorSelect"));
+  let imgUrlSelect = JSON.parse(sessionStorage.getItem("imgUrlSelect"));
+  let weeksSelect = JSON.parse(sessionStorage.getItem("weeklSelect"));
+  let descriptionSelect = JSON.parse(sessionStorage.getItem("descriptionSelect"));
+  let amazonUrlSelect = JSON.parse(sessionStorage.getItem("amazonUrlSelect"));
   db.collection("favoritos")
     .get()
     .then((querySnapshot) => {
@@ -117,7 +117,7 @@ function traerFavoritos() {
 async function getList() {
   try {
     /*fetch de api nytimes*/
-    let selectionUser = JSON.parse(localStorage.getItem("userSelection"));
+    let selectionUser = JSON.parse(sessionStorage.getItem("userSelection"));
     let response = await fetch(
       `https://api.nytimes.com/svc/books/v3/lists/current/${selectionUser}.json?api-key=CfqlRIKyzptHUR5CthXqjCnQwFZJReyj`
     );
@@ -187,9 +187,6 @@ async function getList() {
   }
 }
 
-
-
-
 /*BOTÓN QUIT DEL LOGIN*/
 document.querySelector(".list__button__quit").addEventListener("click", () => {
   document.querySelector(".list__contnent__login").style.display = "none";
@@ -221,15 +218,20 @@ crearUsuario = () => {
     });
 };
 /*DISCRIMINAR SI HAY O NO USUARIO LOGEADO*/
-let activeUser = JSON.parse(localStorage.getItem("userName"));
-console.log(activeUser)
-if (activeUser){
+
+document
+  .querySelectorAll(".list__books__favorite")
+  .forEach((element) => (element.style.display = "block"));
+
+let activeUser = JSON.parse(sessionStorage.getItem("userName"));
+console.log(activeUser);
+if (activeUser) {
   document.querySelector(".list__contnent__login").style.display = "none";
   document.querySelector(".list__header__content").style.filter = "blur(0)";
   document.querySelector(".list__section").style.filter = "blur(0)";
   document.querySelector(".back__index").style.display = "block";
   getList();
-  login()
+  login();
 } else {
   getList();
 }
