@@ -169,7 +169,7 @@ async function getList() {
       booksLink.appendChild(booksButton);
       booksSubContent.appendChild(booksButton2);
       // /*añadiendo los datos del fetch a los elementos html*/
-      booksTitle.innerHTML = `${books[i].title}`;
+      booksTitle.innerHTML = `#${books[i].rank} ${books[i].title}`;
       booksAuthor.innerHTML = `Written by: ${books[i].author}`;
       booksImg.src = `${books[i].book_image}`;
       booksWeeks.innerHTML = `Weeks on list: ${books[i].weeks_on_list}`;
